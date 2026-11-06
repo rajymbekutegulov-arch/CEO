@@ -5,9 +5,11 @@
   "type": "module",
   "description": "Платформа подготовки к ЕНТ для учеников школы №8: география, математическая грамотность, история Казахстана",
   "scripts": {
+    "prestart": "node scripts/check-imports.js",
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
-    "check": "node scripts/check-content.js",
+    "check:imports": "node scripts/check-imports.js",
+    "check": "node scripts/check-imports.js && node scripts/check-content.js",
     "smoke": "node scripts/smoke-test.js",
     "reset-db": "node scripts/reset-db.js"
   },

@@ -8,7 +8,8 @@ import { loadDb, DB_FILE } from './db.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const PORT = Number(process.env.PORT) || 4173;
-const HOST = process.env.HOST || '127.0.0.1';
+// Render (and most PaaS) require binding to 0.0.0.0, not 127.0.0.1.
+const HOST = process.env.HOST || '0.0.0.0';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -144,7 +145,8 @@ const server = http.createServer(async (req, res) => {
 
 loadDb();
 server.listen(PORT, HOST, () => {
-  const url = `http://${HOST}:${PORT}`;
+  const displayHost = HOST === '0.0.0.0' ? 'localhost' : HOST;
+  const url = `http://${displayHost}:${PORT}`;
   console.log('');
   console.log('  ┌──────────────────────────────────────────────┐');
   console.log('  │  ЕНТ · Школа №8 — платформа подготовки        │');
@@ -153,6 +155,9 @@ server.listen(PORT, HOST, () => {
   console.log(`  Демо-ученик:     student@school8.kz / student123`);
   console.log(`  Демо-учитель:    teacher@school8.kz / teacher123`);
   console.log(`  База данных:     ${DB_FILE}`);
+  if (process.env.RENDER_EXTERNAL_URL) {
+    console.log(`  Render URL:      ${process.env.RENDER_EXTERNAL_URL}`);
+  }
   console.log('  Остановка:       Ctrl+C');
   console.log('');
 });
