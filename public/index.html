@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Платформа подготовки к ЕНТ для учеников школы №8: география, математическая грамотность, история Казахстана. Объяснения, практика и пробные варианты на русском и казахском языках.">
+  <title>ЕНТ · Школа №8 — подготовка к ЕНТ</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <button class="skip-link" type="button" id="skipLink">Перейти к содержимому</button>
+  <div id="route-bar" class="route-bar" aria-hidden="true"></div>
+
+  <div id="offline-banner" class="offline-banner" role="status" hidden>
+    <span class="offline-dot" aria-hidden="true"></span>
+    <div class="offline-copy">
+      <strong data-offline-title>Сервер недоступен</strong>
+      <span data-offline-text>Проверьте, что приложение запущено командой npm start.</span>
+    </div>
+    <button class="btn btn-secondary btn-sm" type="button" id="offline-retry">Повторить</button>
+  </div>
+
+  <div id="app-header"></div>
+
+  <main id="app" tabindex="-1">
+    <div class="container section boot-screen">
+      <div class="boot-card">
+        <span class="spinner spinner-lg" aria-hidden="true"></span>
+        <p>Загружаем платформу…</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+  <div id="toasts" class="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+  <div id="modal-root"></div>
+
+  <noscript>
+    <div class="noscript">Для работы сайта включите JavaScript в настройках браузера.</div>
+  </noscript>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
